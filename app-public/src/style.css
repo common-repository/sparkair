@@ -1,0 +1,12 @@
+@tailwind base;
+/* @tailwind components; */
+@tailwind utilities;
+
+.sp-hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+  
+.sp-hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}

@@ -1,0 +1,32 @@
+parameters:
+  plugin.prefix: "%plugin.sparkair.prefix%"
+  plugin.slug: "%plugin.sparkair.slug%"
+  plugin.version: "%plugin.sparkair.version%"
+
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+    bind:
+      $pluginMeta: "@plugin-meta"
+  _instanceof:
+    Sparkair\SparkPlugins\SparkWoo\Common\Modules\ModuleInterface:
+      tags: ["app.module"]
+  plugin-meta: "@plugin-meta-air"
+  dismissed-data-outdated-message-option:
+    class: Sparkair\SparkPlugins\SparkWoo\Common\Options\BooleanOption
+    arguments:
+      $prefix: "%plugin.prefix%"
+      $name: outdated_data_message_option
+  Sparkair\SparkPlugins\SparkWoo\AIRecommendationsFree\SuccessNotificationModule:
+    arguments:
+      $sparkAirDismissedTrainingSuccessMessageOption: "@dismissed-training-success-message-option"
+      $sparkAirDismissedDataOutdatedMessageOption: "@dismissed-data-outdated-message-option"
+
+imports:
+  - { resource: services-common.yaml }
+  - { resource: services-common-free.yaml }
+  - { resource: services-product-recommendations.yaml }
+  - { resource: services-product-recommendations-free.yaml }
+  - { resource: services-sparkair-base.yaml }

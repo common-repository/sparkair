@@ -1,0 +1,45 @@
+{
+    "autoload": {
+        "psr-4": {
+            "Sparkair\\SparkPlugins\\SparkWoo\\": "src\/"
+        }
+    },
+    "require": {
+        "php": ">=7.2.5",
+        "psr\/container": "=1.1.1",
+        "symfony\/dependency-injection": "^5.4",
+        "symfony\/filesystem": "^5.4",
+        "symfony\/yaml": "^5.4",
+        "symfony\/config": "^5.3",
+        "symfony\/string": "^5.4",
+        "symfony\/translation": "^5.4",
+        "symfony\/translation-contracts": "^2.5",
+        "symfony\/deprecation-contracts": "^2.5",
+        "markrogoyski\/math-php": "^2.8"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "allow-plugins": {
+            "symfony\/runtime": true,
+            "dealerdirect\/phpcodesniffer-composer-installer": true
+        },
+        "platform-check": false,
+        "autoloader-suffix": "7f390eabd2ba41a06e9bbdd07edfddc7048d352f"
+    },
+    "require-dev": {
+        "twig\/twig": "^3.0",
+        "twig\/string-extra": "^3.6",
+        "wp-coding-standards\/wpcs": "^3.0"
+    },
+    "scripts": {
+        "prefix-dependencies": [
+            "php-scoper add-prefix --force"
+        ],
+        "gh-action-dry-run-build": [
+            "act -j build -s GITHUB_TOKEN=\"$(gh auth token)\""
+        ]
+    },
+    "scripts-descriptions": {
+        "prefix-dependencies": "Create the plugin directory."
+    }
+}

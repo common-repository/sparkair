@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --popper-theme-background-color: rgb(51, 51, 51);
+  --popper-theme-background-color-hover: #333333;
+  --popper-theme-text-color: #ffffff;
+  --popper-theme-border-width: 0px;
+  --popper-theme-border-style: solid;
+  --popper-theme-border-radius: 6px;
+  --popper-theme-padding: 0.75em 1em;
+  --popper-theme-box-shadow: 0 6px 30px -6px rgba(0, 0, 0, 0.25);
+}
+
+.sparkwoo-admin .popper {
+  font-size: 0.8em;
+  max-width: 300px;
+}
+
+.sparkwoo-admin a {
+  @apply text-indigo-600;
+  @apply hover:text-indigo-700;
+  @apply cursor-pointer;
+}
+
+.sparkwoo-admin .code {
+  @apply bg-gray-200;
+  @apply p-1;
+  @apply font-mono;
+  @apply text-xs;
+  @apply text-gray-900;
+}

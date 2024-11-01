@@ -1,0 +1,630 @@
+parameters:
+  plugin.sparkwoo.prefix: sparkwoo_ # Also in GlobalVariables
+  options.licenseKey: "license_key"
+  sparkplugins.saas.url: https://sparkplugins-saas.web.app
+  sparkplugins.saas.svdRecommendationsEndpoint: /api/recommendation-models
+
+  plugin.sparkrvp.name: SparkRVP
+  plugin.sparkrvp.nameSuffix: WooCommerce Recently Viewed Products
+  plugin.sparkrvp.websiteUrl: "https://www.sparkplugins.com/sparkrvp"
+  plugin.sparkrvp.slug: sparkrvp
+  plugin.sparkrvp.prefix: sparkrvp_
+  plugin.sparkrvp.version: 1.3.1
+  plugin.sparkrvp.pro: false
+  plugin.sparkrvp-pro.name: SparkRVP PRO
+  plugin.sparkrvp-pro.slug: sparkrvp-pro
+  plugin.sparkrvp-pro.prefix: sparkrvpp_
+  plugin.sparkrvp-pro.version: 1.3.1
+  plugin.sparkrvp-pro.pro: true
+
+  plugin.sparkfbt.name: SparkFBT
+  plugin.sparkfbt.nameSuffix: WooCommerce Frequently Bought Together
+  plugin.sparkfbt.websiteUrl: "https://www.sparkplugins.com/sparkfbt"
+  plugin.sparkfbt.slug: sparkfbt
+  plugin.sparkfbt.prefix: sparkfbt_
+  plugin.sparkfbt.version: 1.2.4
+  plugin.sparkfbt.pro: false
+  plugin.sparkfbt-pro.name: SparkFBT PRO
+  plugin.sparkfbt-pro.slug: sparkfbt-pro
+  plugin.sparkfbt-pro.prefix: sparkfbtp_
+  plugin.sparkfbt-pro.version: 1.2.4
+  plugin.sparkfbt-pro.pro: true
+
+  plugin.sparkrpr.name: SparkRPR
+  plugin.sparkrpr.nameSuffix: ""
+  plugin.sparkrpr.fullName: SparkRPR
+  plugin.sparkrpr.websiteUrl: "https://www.sparkplugins.com/sparkrpr"
+  plugin.sparkrpr.slug: sparkrpr
+  plugin.sparkrpr.prefix: sparkrpr_
+  plugin.sparkrpr.version: 1.1.1
+  plugin.sparkrpr.pro: false
+  plugin.sparkrpr-pro.name: SparkRPR PRO
+  plugin.sparkrpr-pro.slug: sparkrpr-pro
+  plugin.sparkrpr-pro.prefix: sparkrprp_
+  plugin.sparkrpr-pro.version: 1.1.1
+  plugin.sparkrpr-pro.pro: true
+
+  plugin.sparktrp.name: SparkTRP
+  plugin.sparktrp.nameSuffix: ""
+  plugin.sparktrp.websiteUrl: "https://www.sparkplugins.com/sparktrp"
+  plugin.sparktrp.slug: sparktrp
+  plugin.sparktrp.prefix: sparktrp_
+  plugin.sparktrp.version: 1.0.0
+  plugin.sparktrp.pro: false
+  plugin.sparktrp-pro.name: SparkTRP PRO
+  plugin.sparktrp-pro.slug: sparktrp-pro
+  plugin.sparktrp-pro.prefix: sparktrpp_
+  plugin.sparktrp-pro.version: 1.0.0
+  plugin.sparktrp-pro.pro: true
+
+  plugin.sparkosp.name: SparkOSP
+  plugin.sparkosp.nameSuffix: ""
+  plugin.sparkosp.websiteUrl: "https://www.sparkplugins.com/sparkosp"
+  plugin.sparkosp.slug: sparkosp
+  plugin.sparkosp.prefix: sparkosp_
+  plugin.sparkosp.version: 1.0.0
+  plugin.sparkosp.pro: false
+  plugin.sparkosp-pro.name: SparkOSP PRO
+  plugin.sparkosp-pro.slug: sparkosp-pro
+  plugin.sparkosp-pro.prefix: sparkospp_
+  plugin.sparkosp-pro.version: 1.0.0
+  plugin.sparkosp-pro.pro: true
+
+  plugin.sparkfp.name: SparkFP
+  plugin.sparkfp.nameSuffix: WooCommerce Featured Products
+  plugin.sparkfp.websiteUrl: "https://www.sparkplugins.com/sparkfp"
+  plugin.sparkfp.slug: sparkfp
+  plugin.sparkfp.prefix: sparkfp_
+  plugin.sparkfp.version: 1.1.1
+  plugin.sparkfp.pro: false
+  plugin.sparkfp-pro.name: SparkFP PRO
+  plugin.sparkfp-pro.slug: sparkfp-pro
+  plugin.sparkfp-pro.prefix: sparkfpp_
+  plugin.sparkfp-pro.version: 1.1.1
+  plugin.sparkfp-pro.pro: true
+
+  plugin.sparknap.name: SparkNAP
+  plugin.sparknap.nameSuffix: ""
+  plugin.sparknap.websiteUrl: "https://www.sparkplugins.com/sparknap"
+  plugin.sparknap.slug: sparknap
+  plugin.sparknap.prefix: sparknap_
+  plugin.sparknap.version: 1.0.0
+  plugin.sparknap.pro: false
+  plugin.sparknap-pro.name: SparkNAP PRO
+  plugin.sparknap-pro.slug: sparknap-pro
+  plugin.sparknap-pro.prefix: sparknapp_
+  plugin.sparknap-pro.version: 1.0.0
+  plugin.sparknap-pro.pro: true
+
+  plugin.sparkmpp.name: SparkMPP
+  plugin.sparkmpp.nameSuffix: ""
+  plugin.sparkmpp.websiteUrl: "https://www.sparkplugins.com/sparkmpp"
+  plugin.sparkmpp.slug: sparkmpp
+  plugin.sparkmpp.prefix: sparkmpp_
+  plugin.sparkmpp.version: 1.0.0
+  plugin.sparkmpp.pro: false
+  plugin.sparkmpp-pro.name: SparkMPP PRO
+  plugin.sparkmpp-pro.slug: sparkmpp-pro
+  plugin.sparkmpp-pro.prefix: sparkmppp_
+  plugin.sparkmpp-pro.version: 1.0.0
+  plugin.sparkmpp-pro.pro: true
+
+  plugin.sparkair.name: SparkAIR
+  plugin.sparkair.nameSuffix: Recommendations for WooCommerce driven by AI!
+  plugin.sparkair.websiteUrl: "https://www.sparkplugins.com/sparkair"
+  plugin.sparkair.slug: sparkair
+  plugin.sparkair.prefix: sparkair_
+  plugin.sparkair.version: 1.0.6
+  plugin.sparkair.pro: false
+  plugin.sparkair-pro.name: SparkAIR PRO
+  plugin.sparkair-pro.slug: sparkair-pro
+  plugin.sparkair-pro.prefix: sparkairp_
+  plugin.sparkair-pro.version: 1.0.6
+  plugin.sparkair-pro.pro: true
+
+  productsManager.sparkrvp.title: Recently Viewed Products
+  productsManager.sparkrvp.slug: "%plugin.sparkrvp.slug%"
+  productsManager.sparkrvp.description: Show the recently viewed products for the same user based on its personal history, whether the user is logged in or not
+  productsManager.sparkrvp.shortcode: sparkrvp_products
+
+  productsManager.sparkfbt.title: Frequently Bought Together
+  productsManager.sparkfbt.slug: "%plugin.sparkfbt.slug%"
+  productsManager.sparkfbt.description: Show the perfect pairings! Help your visitors to buy the best product combinations.
+  productsManager.sparkfbt.shortcode: sparkfbt_products
+
+  productsManager.sparkfp.title: Featured Products
+  productsManager.sparkfp.slug: "%plugin.sparkfp.slug%"
+  productsManager.sparkfp.description: Show the products that are marked as featured.
+  productsManager.sparkfp.shortcode: sparkfp_products
+
+  productsManager.sparkrpr.title: Random Product Recommendations
+  productsManager.sparkrpr.slug: "%plugin.sparkrpr.slug%"
+  productsManager.sparkrpr.description: Show the random products to let your visitors know about all type of products you are selling
+  productsManager.sparkrpr.shortcode: sparkrpr_products
+
+  productsManager.sparktrp.title: Top Rated Products
+  productsManager.sparktrp.slug: "%plugin.sparktrp.slug%"
+  productsManager.sparktrp.description: Show the top rated products according to your customers reviews.
+  productsManager.sparktrp.shortcode: sparktrp_products
+
+  productsManager.sparkosp.title: On-Sale Products
+  productsManager.sparkosp.slug: "%plugin.sparkosp.slug%"
+  productsManager.sparkosp.description: Show products that are marked as on-sale, to entice users to make a purchase.
+  productsManager.sparkosp.shortcode: sparkosp_products
+
+  productsManager.sparknap.title: Newly Added Products
+  productsManager.sparknap.slug: "%plugin.sparknap.slug%"
+  productsManager.sparknap.description: Show the most recently added products to your webshop.
+  productsManager.sparknap.shortcode: sparknap_products
+
+  productsManager.sparkmpp.title: Most Popular Products
+  productsManager.sparkmpp.slug: "%plugin.sparkmpp.slug%"
+  productsManager.sparkmpp.description: Show the most popular products among your customers, sold in the last month.
+  productsManager.sparkmpp.shortcode: sparkmpp_products
+
+  productsManager.sparkair.title: AI Recommendations
+  productsManager.sparkair.slug: "%plugin.sparkair.slug%"
+  productsManager.sparkair.description: Recommend products based on user's implicit and predicted preferences.
+  productsManager.sparkair.shortcode: sparkair_products
+
+  plugin.group.product-recommendations: product-recommendations
+  plugin.group.pro: pro
+  plugin.group.free: free
+
+  gettingStarted.sparkWoo.payoff: SparkWoo
+  gettingStarted.sparkWoo.title: Find us effortlessly in the menu
+  gettingStarted.sparkWoo.description: The plugin you just activated is a proud member of the SparkWoo plugin series. Explore the full range of installed SparkWoo plugins by simply clicking on SparkWoo in the menu. Enjoy the seamless integration and endless possibilities!
+  gettingStarted.sparkWoo.image: getting-started-sparkwoo.png
+
+  plugins.conflict: []
+
+services:
+  _instanceof:
+    Sparkair\SparkPlugins\SparkWoo\Common\Modules\ModuleInterface:
+      tags: ["app.module"]
+    Sparkair\SparkPlugins\SparkWoo\Common\Activation\ActivationHookInterface:
+      tags: ["app.activation"]
+    Sparkair\SparkPlugins\SparkWoo\Common\Activation\DeactivationHookInterface:
+      tags: ["app.deactivation"]
+    Sparkair\SparkPlugins\SparkWoo\Common\Plugins\PluginMeta:
+      tags: ["app.pluginMeta"]
+    Sparkair\SparkPlugins\SparkWoo\Common\Options\OptionInterface:
+      tags: ["app.option"]
+    Sparkair\SparkPlugins\SparkWoo\Common\Migrations\MigrationInterface:
+      tags: ["app.migration"]
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+    bind:
+      $pluginMeta: "@plugin-meta"
+      $pluginsRequired: "%plugins.required%"
+      $pluginsConflict: "%plugins.conflict%"
+      $notificationModule: '@Sparkair\SparkPlugins\SparkWoo\Common\Notifications\NotificationModule'
+      $firstTimePluginUsageOption: "%options.firstTimePluginUsage%"
+      $adminMenuHomeName: "%plugin.admin.menuHomeName%"
+      $api: "@api"
+      $options: '@Sparkair\SparkPlugins\SparkWoo\Common\Options\OptionsCollection'
+      $activationHooks: !tagged_iterator { tag: app.activation }
+      $deactivationHooks: !tagged_iterator { tag: app.deactivation }
+      $modules: !tagged_iterator { tag: app.module }
+      $postModels: !tagged_iterator { tag: app.postType }
+      $migrations: !tagged_iterator { tag: app.migration }
+      $globalVariables: "@global-variables"
+      $pageTemplates: "%page.templates%"
+      $dataProviders: !tagged_iterator { tag: app.scriptsDataProviders }
+  global-variables:
+    class: Sparkair\SparkPlugins\SparkWoo\Common\Plugins\GlobalVariables
+    public: true
+  plugin-meta-rvp:
+    class: Sparkair\SparkPlugins\SparkWoo\Common\Plugins\PluginMeta
+    arguments:
+      $name: "%plugin.sparkrvp.name%"
+      $websiteUrl: "%plugin.sparkrvp.websiteUrl%"
+      $slug: "%plugin.sparkrvp.slug%"
+      $prefix: "%plugin.sparkrvp.prefix%"
+      $version: "%plugin.sparkrvp.version%"
+      $isPro: "%plugin.sparkrvp.pro%"
+      $test: false
+      $soon: false
+      $groups:
+        - "%plugin.group.product-recommendations%"
+        - "%plugin.group.free%"
+      $extra:
+        productsManager:
+          title: "%productsManager.sparkrvp.title%"
+          slug: "%productsManager.sparkrvp.slug%"
+          description: "%productsManager.sparkrvp.description%"
+          shortcode: "%productsManager.sparkrvp.shortcode%"
+  plugin-meta-rvp-pro:
+    class: Sparkair\SparkPlugins\SparkWoo\Common\Plugins\PluginMeta
+    arguments:
+      $name: "%plugin.sparkrvp-pro.name%"
+      $websiteUrl: "%plugin.sparkrvp.websiteUrl%"
+      $slug: "%plugin.sparkrvp-pro.slug%"
+      $prefix: "%plugin.sparkrvp-pro.prefix%"
+      $version: "%plugin.sparkrvp-pro.version%"
+      $isPro: "%plugin.sparkrvp-pro.pro%"
+      $test: false
+      $soon: false
+      $groups:
+        - "%plugin.group.product-recommendations%"
+        - "%plugin.group.pro%"
+      $extra:
+        productsManager:
+          title: "%productsManager.sparkrvp.title%"
+          slug: "%productsManager.sparkrvp.slug%"
+          description: "%productsManager.sparkrvp.description%"
+          shortcode: "%productsManager.sparkrvp.shortcode%"
+  plugin-meta-fbt:
+    class: Sparkair\SparkPlugins\SparkWoo\Common\Plugins\PluginMeta
+    arguments:
+      $name: "%plugin.sparkfbt.name%"
+      $websiteUrl: "%plugin.sparkfbt.websiteUrl%"
+      $slug: "%plugin.sparkfbt.slug%"
+      $prefix: "%plugin.sparkfbt.prefix%"
+      $version: "%plugin.sparkfbt.version%"
+      $isPro: "%plugin.sparkfbt.pro%"
+      $test: false
+      $soon: false
+      $groups:
+        - "%plugin.group.product-recommendations%"
+        - "%plugin.group.free%"
+      $extra:
+        productsManager:
+          title: "%productsManager.sparkfbt.title%"
+          slug: "%productsManager.sparkfbt.slug%"
+          description: "%productsManager.sparkfbt.description%"
+          shortcode: "%productsManager.sparkfbt.shortcode%"
+  plugin-meta-fbt-pro:
+    class: Sparkair\SparkPlugins\SparkWoo\Common\Plugins\PluginMeta
+    arguments:
+      $name: "%plugin.sparkfbt-pro.name%"
+      $websiteUrl: "%plugin.sparkfbt.websiteUrl%"
+      $slug: "%plugin.sparkfbt-pro.slug%"
+      $prefix: "%plugin.sparkfbt-pro.prefix%"
+      $version: "%plugin.sparkfbt-pro.version%"
+      $isPro: "%plugin.sparkfbt-pro.pro%"
+      $test: false
+      $soon: false
+      $groups:
+        - "%plugin.group.product-recommendations%"
+        - "%plugin.group.pro%"
+      $extra:
+        productsManager:
+          title: "%productsManager.sparkfbt.title%"
+          slug: "%productsManager.sparkfbt.slug%"
+          description: "%productsManager.sparkfbt.description%"
+          shortcode: "%productsManager.sparkfbt.shortcode%"
+  plugin-meta-fp:
+    class: Sparkair\SparkPlugins\SparkWoo\Common\Plugins\PluginMeta
+    arguments:
+      $name: "%plugin.sparkfp.name%"
+      $websiteUrl: "%plugin.sparkfp.websiteUrl%"
+      $slug: "%plugin.sparkfp.slug%"
+      $prefix: "%plugin.sparkfp.prefix%"
+      $version: "%plugin.sparkfp.version%"
+      $isPro: "%plugin.sparkfp.pro%"
+      $test: false
+      $soon: false
+      $groups:
+        - "%plugin.group.product-recommendations%"
+        - "%plugin.group.free%"
+      $extra:
+        productsManager:
+          title: "%productsManager.sparkfp.title%"
+          slug: "%productsManager.sparkfp.slug%"
+          description: "%productsManager.sparkfp.description%"
+          shortcode: "%productsManager.sparkfp.shortcode%"
+  plugin-meta-fp-pro:
+    class: Sparkair\SparkPlugins\SparkWoo\Common\Plugins\PluginMeta
+    arguments:
+      $name: "%plugin.sparkfp-pro.name%"
+      $websiteUrl: "%plugin.sparkfp.websiteUrl%"
+      $slug: "%plugin.sparkfp-pro.slug%"
+      $prefix: "%plugin.sparkfp-pro.prefix%"
+      $version: "%plugin.sparkfp-pro.version%"
+      $isPro: "%plugin.sparkfp-pro.pro%"
+      $test: false
+      $soon: false
+      $groups:
+        - "%plugin.group.product-recommendations%"
+        - "%plugin.group.pro%"
+      $extra:
+        productsManager:
+          title: "%productsManager.sparkfp.title%"
+          slug: "%productsManager.sparkfp.slug%"
+          description: "%productsManager.sparkfp.description%"
+          shortcode: "%productsManager.sparkfp.shortcode%"
+  plugin-meta-rpr:
+    class: Sparkair\SparkPlugins\SparkWoo\Common\Plugins\PluginMeta
+    arguments:
+      $name: "%plugin.sparkrpr.name%"
+      $websiteUrl: "%plugin.sparkrpr.websiteUrl%"
+      $slug: "%plugin.sparkrpr.slug%"
+      $prefix: "%plugin.sparkrpr.prefix%"
+      $version: "%plugin.sparkrpr.version%"
+      $isPro: "%plugin.sparkrpr.pro%"
+      $test: false
+      $soon: true
+      $groups:
+        - "%plugin.group.product-recommendations%"
+        - "%plugin.group.free%"
+      $extra:
+        productsManager:
+          title: "%productsManager.sparkrpr.title%"
+          slug: "%productsManager.sparkrpr.slug%"
+          description: "%productsManager.sparkrpr.description%"
+          shortcode: "%productsManager.sparkrpr.shortcode%"
+  plugin-meta-rpr-pro:
+    class: Sparkair\SparkPlugins\SparkWoo\Common\Plugins\PluginMeta
+    arguments:
+      $name: "%plugin.sparkrpr-pro.name%"
+      $websiteUrl: "%plugin.sparkrpr.websiteUrl%"
+      $slug: "%plugin.sparkrpr-pro.slug%"
+      $prefix: "%plugin.sparkrpr-pro.prefix%"
+      $version: "%plugin.sparkrpr-pro.version%"
+      $isPro: "%plugin.sparkrpr-pro.pro%"
+      $test: false
+      $soon: true
+      $groups:
+        - "%plugin.group.product-recommendations%"
+        - "%plugin.group.pro%"
+      $extra:
+        productsManager:
+          title: "%productsManager.sparkrpr.title%"
+          slug: "%productsManager.sparkrpr.slug%"
+          description: "%productsManager.sparkrpr.description%"
+          shortcode: "%productsManager.sparkrpr.shortcode%"
+  plugin-meta-trp:
+    class: Sparkair\SparkPlugins\SparkWoo\Common\Plugins\PluginMeta
+    arguments:
+      $name: "%plugin.sparktrp.name%"
+      $websiteUrl: "%plugin.sparktrp.websiteUrl%"
+      $slug: "%plugin.sparktrp.slug%"
+      $prefix: "%plugin.sparktrp.prefix%"
+      $version: "%plugin.sparktrp.version%"
+      $isPro: "%plugin.sparktrp.pro%"
+      $test: false
+      $soon: true
+      $groups:
+        - "%plugin.group.product-recommendations%"
+        - "%plugin.group.free%"
+      $extra:
+        productsManager:
+          title: "%productsManager.sparktrp.title%"
+          slug: "%productsManager.sparktrp.slug%"
+          description: "%productsManager.sparktrp.description%"
+          shortcode: "%productsManager.sparktrp.shortcode%"
+  plugin-meta-trp-pro:
+    class: Sparkair\SparkPlugins\SparkWoo\Common\Plugins\PluginMeta
+    arguments:
+      $name: "%plugin.sparktrp-pro.name%"
+      $websiteUrl: "%plugin.sparktrp.websiteUrl%"
+      $slug: "%plugin.sparktrp-pro.slug%"
+      $prefix: "%plugin.sparktrp-pro.prefix%"
+      $version: "%plugin.sparktrp-pro.version%"
+      $isPro: "%plugin.sparktrp-pro.pro%"
+      $test: false
+      $soon: true
+      $groups:
+        - "%plugin.group.product-recommendations%"
+        - "%plugin.group.pro%"
+      $extra:
+        productsManager:
+          title: "%productsManager.sparktrp.title%"
+          slug: "%productsManager.sparktrp.slug%"
+          description: "%productsManager.sparktrp.description%"
+          shortcode: "%productsManager.sparktrp.shortcode%"
+  plugin-meta-osp:
+    class: Sparkair\SparkPlugins\SparkWoo\Common\Plugins\PluginMeta
+    arguments:
+      $name: "%plugin.sparkosp.name%"
+      $websiteUrl: "%plugin.sparkosp.websiteUrl%"
+      $slug: "%plugin.sparkosp.slug%"
+      $prefix: "%plugin.sparkosp.prefix%"
+      $version: "%plugin.sparkosp.version%"
+      $isPro: "%plugin.sparkosp.pro%"
+      $test: false
+      $soon: true
+      $groups:
+        - "%plugin.group.product-recommendations%"
+        - "%plugin.group.free%"
+      $extra:
+        productsManager:
+          title: "%productsManager.sparkosp.title%"
+          slug: "%productsManager.sparkosp.slug%"
+          description: "%productsManager.sparkosp.description%"
+          shortcode: "%productsManager.sparkosp.shortcode%"
+  plugin-meta-osp-pro:
+    class: Sparkair\SparkPlugins\SparkWoo\Common\Plugins\PluginMeta
+    arguments:
+      $name: "%plugin.sparkosp-pro.name%"
+      $websiteUrl: "%plugin.sparkosp.websiteUrl%"
+      $slug: "%plugin.sparkosp-pro.slug%"
+      $prefix: "%plugin.sparkosp-pro.prefix%"
+      $version: "%plugin.sparkosp-pro.version%"
+      $isPro: "%plugin.sparkosp-pro.pro%"
+      $test: false
+      $soon: true
+      $groups:
+        - "%plugin.group.product-recommendations%"
+        - "%plugin.group.pro%"
+      $extra:
+        productsManager:
+          title: "%productsManager.sparkosp.title%"
+          slug: "%productsManager.sparkosp.slug%"
+          description: "%productsManager.sparkosp.description%"
+          shortcode: "%productsManager.sparkosp.shortcode%"
+  plugin-meta-nap:
+    class: Sparkair\SparkPlugins\SparkWoo\Common\Plugins\PluginMeta
+    arguments:
+      $name: "%plugin.sparknap.name%"
+      $websiteUrl: "%plugin.sparknap.websiteUrl%"
+      $slug: "%plugin.sparknap.slug%"
+      $prefix: "%plugin.sparknap.prefix%"
+      $version: "%plugin.sparknap.version%"
+      $isPro: "%plugin.sparknap.pro%"
+      $test: false
+      $soon: true
+      $groups:
+        - "%plugin.group.product-recommendations%"
+        - "%plugin.group.free%"
+      $extra:
+        productsManager:
+          title: "%productsManager.sparknap.title%"
+          slug: "%productsManager.sparknap.slug%"
+          description: "%productsManager.sparknap.description%"
+          shortcode: "%productsManager.sparknap.shortcode%"
+  plugin-meta-nap-pro:
+    class: Sparkair\SparkPlugins\SparkWoo\Common\Plugins\PluginMeta
+    arguments:
+      $name: "%plugin.sparknap-pro.name%"
+      $websiteUrl: "%plugin.sparknap.websiteUrl%"
+      $slug: "%plugin.sparknap-pro.slug%"
+      $prefix: "%plugin.sparknap-pro.prefix%"
+      $version: "%plugin.sparknap-pro.version%"
+      $isPro: "%plugin.sparknap-pro.pro%"
+      $test: false
+      $soon: true
+      $groups:
+        - "%plugin.group.product-recommendations%"
+        - "%plugin.group.pro%"
+      $extra:
+        productsManager:
+          title: "%productsManager.sparknap.title%"
+          slug: "%productsManager.sparknap.slug%"
+          description: "%productsManager.sparknap.description%"
+          shortcode: "%productsManager.sparknap.shortcode%"
+  plugin-meta-mpp:
+    class: Sparkair\SparkPlugins\SparkWoo\Common\Plugins\PluginMeta
+    arguments:
+      $name: "%plugin.sparkmpp.name%"
+      $websiteUrl: "%plugin.sparkmpp.websiteUrl%"
+      $slug: "%plugin.sparkmpp.slug%"
+      $prefix: "%plugin.sparkmpp.prefix%"
+      $version: "%plugin.sparkmpp.version%"
+      $isPro: "%plugin.sparkmpp.pro%"
+      $test: false
+      $soon: true
+      $groups:
+        - "%plugin.group.product-recommendations%"
+        - "%plugin.group.free%"
+      $extra:
+        productsManager:
+          title: "%productsManager.sparkmpp.title%"
+          slug: "%productsManager.sparkmpp.slug%"
+          description: "%productsManager.sparkmpp.description%"
+          shortcode: "%productsManager.sparkmpp.shortcode%"
+  plugin-meta-mpp-pro:
+    class: Sparkair\SparkPlugins\SparkWoo\Common\Plugins\PluginMeta
+    arguments:
+      $name: "%plugin.sparkmpp-pro.name%"
+      $websiteUrl: "%plugin.sparkmpp.websiteUrl%"
+      $slug: "%plugin.sparkmpp-pro.slug%"
+      $prefix: "%plugin.sparkmpp-pro.prefix%"
+      $version: "%plugin.sparkmpp-pro.version%"
+      $isPro: "%plugin.sparkmpp-pro.pro%"
+      $test: false
+      $soon: true
+      $groups:
+        - "%plugin.group.product-recommendations%"
+        - "%plugin.group.pro%"
+      $extra:
+        productsManager:
+          title: "%productsManager.sparkmpp.title%"
+          slug: "%productsManager.sparkmpp.slug%"
+          description: "%productsManager.sparkmpp.description%"
+          shortcode: "%productsManager.sparkmpp.shortcode%"
+  plugin-meta-air:
+    class: Sparkair\SparkPlugins\SparkWoo\Common\Plugins\PluginMeta
+    arguments:
+      $name: "%plugin.sparkair.name%"
+      $websiteUrl: "%plugin.sparkair.websiteUrl%"
+      $slug: "%plugin.sparkair.slug%"
+      $prefix: "%plugin.sparkair.prefix%"
+      $version: "%plugin.sparkair.version%"
+      $isPro: "%plugin.sparkair.pro%"
+      $test: false
+      $soon: false
+      $groups:
+        - "%plugin.group.product-recommendations%"
+        - "%plugin.group.free%"
+      $extra:
+        productsManager:
+          title: "%productsManager.sparkair.title%"
+          slug: "%productsManager.sparkair.slug%"
+          description: "%productsManager.sparkair.description%"
+          shortcode: "%productsManager.sparkair.shortcode%"
+  plugin-meta-air-pro:
+    class: Sparkair\SparkPlugins\SparkWoo\Common\Plugins\PluginMeta
+    arguments:
+      $name: "%plugin.sparkair-pro.name%"
+      $websiteUrl: "%plugin.sparkair.websiteUrl%"
+      $slug: "%plugin.sparkair-pro.slug%"
+      $prefix: "%plugin.sparkair-pro.prefix%"
+      $version: "%plugin.sparkair-pro.version%"
+      $isPro: "%plugin.sparkair-pro.pro%"
+      $test: false
+      $soon: false
+      $groups:
+        - "%plugin.group.product-recommendations%"
+        - "%plugin.group.pro%"
+      $extra:
+        productsManager:
+          title: "%productsManager.sparkair.title%"
+          slug: "%productsManager.sparkair.slug%"
+          description: "%productsManager.sparkair.description%"
+          shortcode: "%productsManager.sparkair.shortcode%"
+
+  Sparkair\SparkPlugins\SparkWoo\Common\Plugins\PluginMetaCollection:
+    arguments:
+      $items: !tagged_iterator { tag: app.pluginMeta }
+  Sparkair\SparkPlugins\SparkWoo\Common\Cache\CacheManager:
+  getting-started-sparkwoo:
+    class: Sparkair\SparkPlugins\SparkWoo\Common\Activation\ActivationPageGettingStartedItem
+    arguments:
+      $payoff: "%gettingStarted.sparkWoo.payoff%"
+      $title: "%gettingStarted.sparkWoo.title%"
+      $description: "%gettingStarted.sparkWoo.description%"
+      $image: "%gettingStarted.sparkWoo.image%"
+  activator:
+    class: Sparkair\SparkPlugins\SparkWoo\Common\Activation\Activator
+    public: true
+  deactivator:
+    class: Sparkair\SparkPlugins\SparkWoo\Common\Activation\Deactivator
+    public: true
+  plugin:
+    class: Sparkair\SparkPlugins\SparkWoo\Common\Plugins\Plugin
+    public: true
+    arguments:
+      $loader: '@Sparkair\SparkPlugins\SparkWoo\Common\Loader'
+  Sparkair\SparkPlugins\SparkWoo\Common\Loader:
+  Sparkair\SparkPlugins\SparkWoo\Common\I18nModule:
+  Sparkair\SparkPlugins\SparkWoo\Common\Notifications\NotificationModule:
+  Sparkair\SparkPlugins\SparkWoo\Common\Activation\FirstTimeActivationHook:
+  Sparkair\SparkPlugins\SparkWoo\Common\Activation\CacheCleanDeactivationHook:
+  Sparkair\SparkPlugins\SparkWoo\Common\PostTypesModule:
+  Sparkair\SparkPlugins\SparkWoo\Common\OtherPluginsModule:
+  Sparkair\SparkPlugins\SparkWoo\Common\PluginsPageModule:
+  Sparkair\SparkPlugins\SparkWoo\Common\Activation\ActivationModule:
+  Sparkair\SparkPlugins\SparkWoo\Common\PageTemplatesModule:
+  Sparkair\SparkPlugins\SparkWoo\Common\StylesScripts\StylesScriptsModule:
+  api:
+    class: Sparkair\SparkPlugins\SparkWoo\Common\Api\BaseApiModule
+    arguments:
+      $apiVersion: "%api.version%"
+  Sparkair\SparkPlugins\SparkWoo\Common\Options\OptionsCollection:
+    arguments:
+      $items: !tagged_iterator { tag: app.option }
+  Sparkair\SparkPlugins\SparkWoo\Common\Admin\UserProfileSectionModule:
+  migration-version-string-option:
+    class: Sparkair\SparkPlugins\SparkWoo\Common\Options\StringOption
+    arguments:
+      $prefix: "%plugin.prefix%"
+      $name: migration_version
+  Sparkair\SparkPlugins\SparkWoo\Common\Migrations\MigrationModule:
+    arguments:
+      $versionOption: "@migration-version-string-option"
+  Sparkair\SparkPlugins\SparkWoo\Common\Repositories\OrderItemRepository:
+  Sparkair\SparkPlugins\SparkWoo\Common\Activation\DeactivationFeedbackModule:

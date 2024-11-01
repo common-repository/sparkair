@@ -1,0 +1,225 @@
+parameters:
+  api.version: 1
+  options.firstTimePluginUsage: "%plugin.slug%-first_time_plugin_usage"
+  plugin.isPro: false
+  page.preview.title: "SparkWoo Product Recommendations Preview"
+  page.preview.template: src/ProductRecommendations/Templates/ProductPreview.php
+  page.templates: []
+  plugins.required:
+    - plugin: woocommerce/woocommerce.php
+      name: WooCommerce
+  gettingStarted.addFirst.payoff: Getting Started
+  gettingStarted.addFirst.title: Add your very first product recommendation
+  gettingStarted.addFirst.description: Unlock the power of our user-friendly wizard, enabling you to effortlessly create product promotions in seconds. Seamlessly generate recommendations based on Recently Viewed Products and captivate your audience with ease.
+  gettingStarted.addFirst.image: getting-started-product-recommendations.png
+  gettingStarted.addFirst.button: wizard
+  plugin.admin.menuHomeName: "%plugin.sparkwoo.prefix%product-recommendations"
+  hook.key.home-before-footer: "home-before-footer"
+  hook.key.shop-after-products: "shop-after-products"
+  hook.key.single-product-after-product: "single-product-after-product"
+  hook.key.no-products-found: "no-products-found"
+  hook.key.cart-after-cart: "cart-after-cart"
+  hook.key.cart-empty: "cart-empty"
+  hook.key.checkout-before-form: "checkout-before-form"
+  hook.key.checkout-after-form: "checkout-after-form"
+  hook.key.account-content: "account-content"
+  hook.key.shortcode: "shortcode"
+
+  sparkrvp.cookie.name: sp-woo-viewed-product-ids
+
+services:
+  _instanceof:
+    Sparkair\SparkPlugins\SparkWoo\Common\Modules\ModuleInterface:
+      tags: ["app.module"]
+    Sparkair\SparkPlugins\SparkWoo\Common\Activation\ActivationHookInterface:
+      tags: ["app.activation"]
+    Sparkair\SparkPlugins\SparkWoo\Common\Activation\DeactivationHookInterface:
+      tags: ["app.deactivation"]
+    Sparkair\SparkPlugins\SparkWoo\Common\Models\PostModelInterface:
+      tags: ["app.postType"]
+    Sparkair\SparkPlugins\SparkWoo\Common\Options\OptionInterface:
+      tags: ["app.option"]
+    Sparkair\SparkPlugins\SparkWoo\Common\StylesScripts\ScriptsDataProviderInterface:
+      tags: ["app.scriptsDataProviders"]
+    Sparkair\SparkPlugins\SparkWoo\Common\Migrations\MigrationInterface:
+      tags: ["app.migration"]
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+    bind:
+      $placementHooks: "@placement-hook-collection"
+      $pluginMeta: "@plugin-meta"
+      $partial: "@product-recommendations-partial"
+      $productsManager: "@products-manager"
+      $options: '@Sparkair\SparkPlugins\SparkWoo\Common\Options\OptionsCollection'
+      $api: "@api"
+      $cacheManager: '@Sparkair\SparkPlugins\SparkWoo\Common\Cache\CacheManager'
+      $adminMenuHomeName: "%plugin.admin.menuHomeName%"
+      $postModels: !tagged_iterator { tag: app.postType }
+      $globalVariables: "@global-variables"
+      $productRecommendationPostModel: "@product-recommendations-model"
+      $eventRepository: '@Sparkair\SparkPlugins\SparkWoo\ProductRecommendations\Analytics\AnalyticsEventRepository'
+      $stylesScriptsModule: '@Sparkair\SparkPlugins\SparkWoo\Common\StylesScripts\StylesScriptsModule'
+      $pluginMetaCollection: '@Sparkair\SparkPlugins\SparkWoo\Common\Plugins\PluginMetaCollection'
+  placement-hook-collection:
+    class: Sparkair\SparkPlugins\SparkWoo\Common\Collections\DefaultCollection
+    arguments:
+      $items:
+        - "@home-before-footer-hook"
+        - "@shop-after-products-hook"
+        - "@single-product-after-product-hook"
+        - "@no-products-found-hook"
+        - "@cart-after-cart-hook"
+        - "@cart-empty-hook"
+        - "@checkout-before-form-hook"
+        - "@checkout-after-form-hook"
+        - "@account-content-hook"
+  Sparkair\SparkPlugins\SparkWoo\ProductRecommendations\ProductRecommendationsScriptsDataProvider:
+  Sparkair\SparkPlugins\SparkWoo\ProductRecommendations\ProductRecommendationsModule:
+  product-recommendations-partial:
+    class: Sparkair\SparkPlugins\SparkWoo\ProductRecommendations\Partials\ProductRecommendationsPartial
+    public: true
+    arguments:
+      $isMultiLanguageOption: "@multi-language-enabled-option"
+  uninstaller:
+    class: Sparkair\SparkPlugins\SparkWoo\ProductRecommendations\Uninstaller
+    public: true
+    arguments:
+      $pluginGroup: "%plugin.group.product-recommendations%"
+      $deleteOptionsOption: "@delete-options-option"
+      $deletePostsOption: "@delete-posts-option"
+  product-recommendations-model:
+    class: Sparkair\SparkPlugins\SparkWoo\ProductRecommendations\Models\ProductRecommendationPostModel
+    public: true
+    shared: true
+    arguments:
+      $allowedPlacementHookNames:
+        - "%hook.key.home-before-footer%"
+        - "%hook.key.shop-after-products%"
+        - "%hook.key.single-product-after-product%"
+        - "%hook.key.no-products-found%"
+        - "%hook.key.cart-after-cart%"
+        - "%hook.key.cart-empty%"
+        - "%hook.key.checkout-before-form%"
+        - "%hook.key.checkout-after-form%"
+        - "%hook.key.account-content%"
+        - "%hook.key.shortcode%"
+  home-before-footer-hook:
+    class: Sparkair\SparkPlugins\SparkWoo\ProductRecommendations\ProductPlacementHooks\HomePlacementHook
+    arguments:
+      $key: "%hook.key.home-before-footer%"
+      $name: Homepage before footer
+      $description: Show the product recommendations on the homepage
+      $actionName: the_content
+  shop-after-products-hook:
+    class: Sparkair\SparkPlugins\SparkWoo\ProductRecommendations\ProductPlacementHooks\ShopPageAfterProductsPlacementHook
+    arguments:
+      $key: "%hook.key.shop-after-products%"
+      $actionName: woocommerce_after_shop_loop
+      $name: Shop page after products
+      $description: Show the product recommendations on the shop page, the overview with products
+  single-product-after-product-hook:
+    class: Sparkair\SparkPlugins\SparkWoo\ProductRecommendations\ProductPlacementHooks\DefaultWooCommercePlacementHook
+    arguments:
+      $key: "%hook.key.single-product-after-product%"
+      $actionName: woocommerce_after_single_product
+      $name: Single product page after the product
+      $description: Show the product recommendations on product detail pages
+  no-products-found-hook:
+    class: Sparkair\SparkPlugins\SparkWoo\ProductRecommendations\ProductPlacementHooks\DefaultWooCommercePlacementHook
+    arguments:
+      $key: "%hook.key.no-products-found%"
+      $actionName: woocommerce_no_products_found
+      $name: No products found page
+      $description: Show the product recommendations on the 'no products found' page
+  cart-after-cart-hook:
+    class: Sparkair\SparkPlugins\SparkWoo\ProductRecommendations\ProductPlacementHooks\DefaultWooCommercePlacementHook
+    arguments:
+      $key: "%hook.key.cart-after-cart%"
+      $actionName: woocommerce_after_cart
+      $name: Cart page after products
+      $description: Show the product recommendations after the products in the shopping cart
+  cart-empty-hook:
+    class: Sparkair\SparkPlugins\SparkWoo\ProductRecommendations\ProductPlacementHooks\DefaultWooCommercePlacementHook
+    arguments:
+      $key: "%hook.key.cart-empty%"
+      $actionName: woocommerce_cart_is_empty
+      $name: Cart page when cart is empty
+      $description: Show the product recommendations when the shopping cart is empty
+  checkout-before-form-hook:
+    class: Sparkair\SparkPlugins\SparkWoo\ProductRecommendations\ProductPlacementHooks\DefaultWooCommercePlacementHook
+    arguments:
+      $key: "%hook.key.checkout-before-form%"
+      $actionName: woocommerce_before_checkout_form
+      $name: Checkout page before form
+      $description: Show the product recommendations on the checkout page before the form
+  checkout-after-form-hook:
+    class: Sparkair\SparkPlugins\SparkWoo\ProductRecommendations\ProductPlacementHooks\DefaultWooCommercePlacementHook
+    arguments:
+      $key: "%hook.key.checkout-after-form%"
+      $actionName: woocommerce_after_checkout_form
+      $name: Checkout page after form
+      $description: Show the product recommendations on the checkout page after the form
+  account-content-hook:
+    class: Sparkair\SparkPlugins\SparkWoo\ProductRecommendations\ProductPlacementHooks\DefaultWooCommercePlacementHook
+    arguments:
+      $key: "%hook.key.account-content%"
+      $actionName: woocommerce_account_content
+      $name: User account after information
+      $description: Show the product recommendations on the account overview page below all content
+  shortcode-hook:
+    class: Sparkair\SparkPlugins\SparkWoo\ProductRecommendations\ProductPlacementHooks\ShortcodePlacementHook
+    arguments:
+      $key: "%hook.key.shortcode%"
+      $name: By shortcode
+      $description: Show the product recommendations by shortcode
+  delete-options-option:
+    class: Sparkair\SparkPlugins\SparkWoo\Common\Options\BooleanOption
+    arguments:
+      $prefix: "%plugin.prefix%"
+      $name: delete_options_on_uninstall
+  delete-posts-option:
+    class: Sparkair\SparkPlugins\SparkWoo\Common\Options\BooleanOption
+    arguments:
+      $prefix: "%plugin.prefix%"
+      $name: delete_posts_on_uninstall
+  multi-language-enabled-option:
+    class: Sparkair\SparkPlugins\SparkWoo\Common\Options\BooleanOption
+    arguments:
+      $prefix: "%plugin.prefix%"
+      $name: multi_language_enabled
+  getting-started-recommendation:
+    class: Sparkair\SparkPlugins\SparkWoo\Common\Activation\ActivationPageGettingStartedItem
+    arguments:
+      $payoff: "%gettingStarted.addFirst.payoff%"
+      $title: "%gettingStarted.addFirst.title%"
+      $description: "%gettingStarted.addFirst.description%"
+      $image: "%gettingStarted.addFirst.image%"
+  getting-started-activation-page-button:
+    class: Sparkair\SparkPlugins\SparkWoo\Common\Activation\ActivationPageButton
+    arguments:
+      $text: Get Started
+    calls:
+      - setRouterObject:
+          - name: wizard
+  Sparkair\SparkPlugins\SparkWoo\Common\Activation\ActivationPageContent:
+    arguments:
+      $gettingStartedItems:
+        - "@getting-started-recommendation"
+        - "@getting-started-sparkwoo"
+      $buttons:
+        - "@getting-started-activation-page-button"
+  Sparkair\SparkPlugins\SparkWoo\ProductRecommendations\Analytics\AnalyticsEventFactory:
+  Sparkair\SparkPlugins\SparkWoo\ProductRecommendations\Analytics\AnalyticsEventRepository:
+  analytics:
+    class: Sparkair\SparkPlugins\SparkWoo\ProductRecommendations\Analytics\AnalyticsModule
+    arguments:
+      $eventFactory: '@Sparkair\SparkPlugins\SparkWoo\ProductRecommendations\Analytics\AnalyticsEventFactory'
+  Sparkair\SparkPlugins\SparkWoo\ProductRecommendations\Preview\ProductPreviewModule:
+    arguments:
+      $template: "%page.preview.template%"
+  Sparkair\SparkPlugins\SparkWoo\ProductRecommendations\Migrations\FixConversionsMigration:
+  Sparkair\SparkPlugins\SparkWoo\ProductRecommendations\Shortcodes\ShortcodeProductsRenderModule:
+    arguments:
+      $shortcodePlacementHook: "@shortcode-hook"

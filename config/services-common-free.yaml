@@ -1,0 +1,30 @@
+parameters:
+  notifications.revenueThreshold: 100
+
+services:
+  _instanceof:
+    Sparkair\SparkPlugins\SparkWoo\Common\Modules\ModuleInterface:
+      tags: ["app.module"]
+    Sparkair\SparkPlugins\SparkWoo\Common\Options\OptionInterface:
+      tags: ["app.option"]
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+    bind:
+      $pluginMeta: "@plugin-meta"
+  dismissed-subscribe-notification-option:
+    class: Sparkair\SparkPlugins\SparkWoo\Common\Options\BooleanOption
+    arguments:
+      $prefix: "%plugin.prefix%"
+      $name: dismissed_subscribed_to_mail_list_free
+  installed-timestamp-option:
+    class: Sparkair\SparkPlugins\SparkWoo\Common\Options\StringOption
+    arguments:
+      $prefix: "%plugin.prefix%"
+      $name: installed_timestamp
+  Sparkair\SparkPlugins\SparkWoo\CommonFree\MailList\SubscribeToMailListModule:
+    arguments:
+      $notificationModule: '@Sparkair\SparkPlugins\SparkWoo\Common\Notifications\NotificationModule'
+      $dismissedOption: "@dismissed-subscribe-notification-option"
+      $installedTimestampOption: "@installed-timestamp-option"

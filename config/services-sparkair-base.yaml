@@ -1,0 +1,110 @@
+parameters:
+  product.manager.slug: "%productsManager.sparkair.slug%"
+  product.manager.title: "%productsManager.sparkair.title%"
+  product.manager.description: "%productsManager.sparkair.description%"
+  product.manager.shortcode: "%productsManager.sparkair.shortcode%"
+  cache.key.predictions.prefix: "predictions_"
+
+services:
+  _instanceof:
+    Sparkair\SparkPlugins\SparkWoo\Common\Modules\ModuleInterface:
+      tags: ["app.module"]
+    Sparkair\SparkPlugins\SparkWoo\Common\Models\PostModelInterface:
+      tags: ["app.postType"]
+    Sparkair\SparkPlugins\SparkWoo\Common\Activation\ActivationHookInterface:
+      tags: ["app.activation"]
+    Sparkair\SparkPlugins\SparkWoo\Common\Activation\DeactivationHookInterface:
+      tags: ["app.deactivation"]
+    Sparkair\SparkPlugins\SparkWoo\Common\Options\OptionInterface:
+      tags: ["app.option"]
+    Sparkair\SparkPlugins\SparkWoo\Common\StylesScripts\ScriptsDataProviderInterface:
+      tags: ["app.scriptsDataProviders"]
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+    bind:
+      $globalVariables: "@global-variables"
+      $pluginMeta: "@plugin-meta"
+      $api: "@api"
+      $predictor: '@Sparkair\SparkPlugins\SparkWoo\AIRecommendations\Prediction\SvdPredictor'
+      $trainer: '@Sparkair\SparkPlugins\SparkWoo\AIRecommendations\Training\RemoteQueueTrainer'
+      $sparkAirDataConsentOption: "@consent-data-option"
+      $sparkAirDismissedRvpDataOption: "@dismissed-rvp-data-option"
+      $sparkAirDismissedTrainingSuccessMessageOption: "@dismissed-training-success-message-option"
+      $cacheManager: '@Sparkair\SparkPlugins\SparkWoo\Common\Cache\CacheManager'
+      $predictionsCacheKeyPrefix: "%cache.key.predictions.prefix%"
+  Sparkair\SparkPlugins\SparkWoo\AIRecommendations\AIToolsModule:
+    arguments:
+      $adminMenuHomeName: "%plugin.admin.menuHomeName%"
+  products-manager:
+    class: Sparkair\SparkPlugins\SparkWoo\AIRecommendations\AIRecommendationsManager
+    arguments:
+      $title: "%product.manager.title%"
+      $slug: "%product.manager.slug%"
+      $description: "%product.manager.description%"
+      $shortcode: "%product.manager.shortcode%"
+  Sparkair\SparkPlugins\SparkWoo\AIRecommendations\Models\AirModelPostModel:
+  Sparkair\SparkPlugins\SparkWoo\AIRecommendations\Prediction\SvdPredictor:
+  Sparkair\SparkPlugins\SparkWoo\AIRecommendations\Prediction\RecommendationsAdminModule:
+  sparkair.training.dataretriever:
+    class: Sparkair\SparkPlugins\SparkWoo\AIRecommendations\Training\DatabaseTrainingDataRetriever
+    arguments:
+      $rvpUserMetaKey: "%sparkrvp.cookie.name%"
+      $rvpDataModule: '@Sparkair\SparkPlugins\SparkWoo\AIRecommendations\RvpDataModule'
+      $orderItemRepository: '@Sparkair\SparkPlugins\SparkWoo\Common\Repositories\OrderItemRepository'
+  Sparkair\SparkPlugins\SparkWoo\AIRecommendations\Training\AutomaticTrainingModule:
+  Sparkair\SparkPlugins\SparkWoo\AIRecommendations\Training\RemoteQueueTrainer:
+    arguments:
+      $saasUrl: "%sparkplugins.saas.url%"
+      $predictionEndpoint: "%sparkplugins.saas.svdRecommendationsEndpoint%"
+      $trainingDataRetriever: "@sparkair.training.dataretriever"
+      $licenseKeyOption: "@?license-key-option"
+  Sparkair\SparkPlugins\SparkWoo\AIRecommendations\Api\AirApiModule:
+  consent-data-option:
+    class: Sparkair\SparkPlugins\SparkWoo\Common\Options\BooleanOption
+    arguments:
+      $prefix: "%plugin.prefix%"
+      $name: consent_data_option
+  dismissed-rvp-data-option:
+    class: Sparkair\SparkPlugins\SparkWoo\Common\Options\BooleanOption
+    arguments:
+      $prefix: "%plugin.prefix%"
+      $name: dismissed_rvp_data_option
+  dismissed-training-success-message-option:
+    class: Sparkair\SparkPlugins\SparkWoo\Common\Options\BooleanOption
+    arguments:
+      $prefix: "%plugin.prefix%"
+      $name: training_success_message_option
+  Sparkair\SparkPlugins\SparkWoo\AIRecommendations\DataConsentModule:
+  Sparkair\SparkPlugins\SparkWoo\AIRecommendations\Activation\CreateAirModelActivationHook:
+  Sparkair\SparkPlugins\SparkWoo\AIRecommendations\Activation\RemoveAirModelsDeactivationHook:
+  Sparkair\SparkPlugins\SparkWoo\AIRecommendations\AIModelNotificationsModule:
+  Sparkair\SparkPlugins\SparkWoo\AIRecommendations\RvpDataModule:
+  Sparkair\SparkPlugins\SparkWoo\ProductRecommendations\Partials\ProductRecommendationsPartial:
+    public: true
+    arguments:
+      $isMultiLanguageOption: "@multi-language-enabled-option"
+  product-recommendations-partial:
+    class: Sparkair\SparkPlugins\SparkWoo\AIRecommendations\Partials\NotLoggedInPartial
+    public: true
+    arguments:
+      $defaultPartial: '@Sparkair\SparkPlugins\SparkWoo\ProductRecommendations\Partials\ProductRecommendationsPartial'
+  getting-started-data-consent:
+    class: Sparkair\SparkPlugins\SparkWoo\AIRecommendations\Activation\ConsentActivationPageGettingStartedItem
+    arguments:
+      $payoff: Agree to use data
+      $title: We need your consent to use your data
+      $description: We are utilizing anonymous shopping data to build an AI model. This data includes user IDs, purchase history, and, if SparkRVP is installed, recently visited products. Kindly grant consent to use the data remotely so we can make an AI model before the plugin can be used.
+      $button: '@Sparkair\SparkPlugins\SparkWoo\AIRecommendations\Activation\ConsentActivationPageButton'
+  Sparkair\SparkPlugins\SparkWoo\AIRecommendations\Activation\ConsentActivationPageButton:
+  Sparkair\SparkPlugins\SparkWoo\Common\Activation\ActivationPageContent:
+    arguments:
+      $gettingStartedItems:
+        - "@getting-started-data-consent"
+        - "@getting-started-recommendation"
+        - "@getting-started-sparkwoo"
+      $buttons:
+        - '@Sparkair\SparkPlugins\SparkWoo\AIRecommendations\Activation\ConsentActivationPageButton'
+        - "@getting-started-activation-page-button"
+  Sparkair\SparkPlugins\SparkWoo\AIRecommendations\Render\NotLoggedInModule:
